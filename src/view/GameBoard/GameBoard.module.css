@@ -1,0 +1,19 @@
+.gameBoard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 30px;
+  padding: 30px;
+  align-content: start;
+  overflow-y: auto;
+  /* border: 2px solid black; */
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 80vh;
+}
+
+@media (max-width: 768px) {
+  .gameBoard {
+    gap: 15px;
+    padding: 15px;
+  }
+}

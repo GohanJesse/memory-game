@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "title": "Bulbizarre",
+    "imageUrl": "/images/pokemon/Bulbizarre.png"
+  },
+  {
+    "id": 2,
+    "title": "Carapuce",
+    "imageUrl": "/images/pokemon/Carapuce.png"
+  },
+  {
+    "id": 3,
+    "title": "Evoli",
+    "imageUrl": "/images/pokemon/Evoli.png"
+  },
+  {
+    "id": 4,
+    "title": "Mewtwo",
+    "imageUrl": "/images/pokemon/Mewtwo.png"
+  },
+  {
+    "id": 5,
+    "title": "Pikachu",
+    "imageUrl": "/images/pokemon/Pikachu.png"
+  },
+  {
+    "id": 6,
+    "title": "Rondoudou",
+    "imageUrl": "/images/pokemon/Rondoudou.png"
+  },
+  {
+    "id": 7,
+    "title": "Sacha Pikachu",
+    "imageUrl": "/images/pokemon/Sacha Pikachu.png"
+  },
+  {
+    "id": 8,
+    "title": "Miaous",
+    "imageUrl": "/images/pokemon/Miaous.png"
+  },
+  {
+    "id": 9,
+    "title": "Salamèche",
+    "imageUrl": "/images/pokemon/Salamèche.png"
+  },
+  {
+    "id": 10,
+    "title": "Spectrum",
+    "imageUrl": "/images/pokemon/Spectrum.png"
+  }
+]

@@ -1,0 +1,60 @@
+.sidebar {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  /* background-color: brown; */
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.gameThem,
+.obtainedPairs,
+.clicksNumber,
+.restartGame {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 100px;
+  border: solid 1px white;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logoThem {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+}
+
+.dragonballThem,
+.frozenThem,
+.pokemonThem {
+  height: 30px;
+  width: 30px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.restartGame {
+  cursor: pointer;
+}
+
+.dragonballThem {
+  background-image: url("/images/dragon ball.png");
+}
+
+.frozenThem {
+  background-image: url("/images/frozen.png");
+}
+
+.pokemonThem {
+  background-image: url("/images/pokeball.png");
+}

@@ -1,0 +1,23 @@
+.app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+}
+
+.sidebarWrapper {
+  width: 30%;
+  padding: 30px;
+  box-sizing: border-box;
+  /* border: 1px solid red; */
+}
+
+.gameBoardWrapper {
+  width: 70%;
+  padding: 30px;
+  box-sizing: border-box;
+  /* border: 1px solid blue; */
+}
