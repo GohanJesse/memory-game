@@ -1,44 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Card from '../Card/Card';
 import Styles from './GameBoard.module.css';
-import dragonBallData from '../../themes/dragonball.json';
 import { CardType } from '../../models/CardType';
 
 interface GameBoardProps {
     onCardClick: () => void;
+    setPairsFound: (pairs: number) => void;
     cards: CardType[];
 }
 
-const shuffleCards = (cards: CardType[]): CardType[] => {
-    let currentIndex = cards.length, randomIndex;
 
-    // Tant qu'il reste des éléments à mélanger...
-    while (currentIndex !== 0) {
-        // Prendre un élément restant...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
+const GameBoard: React.FC<GameBoardProps> = ({ onCardClick, setPairsFound, cards }) => {
 
-        // Et l'échanger avec l'élément actuel.
-        [cards[currentIndex], cards[randomIndex]] = [
-            cards[randomIndex], cards[currentIndex]];
-    }
+    const [selectedCards, setSelectedCards] = useState<number[]>([]);
+    const [foundPairs, setFoundPairs] = useState<number[]>([]);
+    const [canClick, setCanClick] = useState(true);
 
-    return cards;
-};
+    const handleCardClick = (index: number) => {
+        if (!canClick || foundPairs.includes(index) || selectedCards.includes(index)) {
+            return; // Ne rien faire si on ne peut pas cliquer ou si la carte est déjà retournée ou trouvée
+        }
 
-const GameBoard: React.FC<GameBoardProps> = ({ onCardClick }) => {
+        const newSelectedCards = [...selectedCards, index];
+        setSelectedCards(newSelectedCards);
 
-    const [cards, setCards] = useState<CardType[]>([]);
+        if (newSelectedCards.length === 2) {
+            setCanClick(false); // Empêche d'autres clics pendant la vérification
+            const match = cards[newSelectedCards[0]].title === cards[newSelectedCards[1]].title;
 
-    useEffect(() => {
-        // Mélange les cartes lors du premier chargement du composant
-        setCards(shuffleCards([...dragonBallData]));
-    }, []);
+            if (match) {
+                const newFoundPairs = [...foundPairs, newSelectedCards[0], newSelectedCards[1]];
+                setFoundPairs(newFoundPairs);
+                setPairsFound(newFoundPairs.length / 2);
+
+                setSelectedCards([]);
+            } else {
+                setTimeout(() => {
+                    setSelectedCards([]); // Retourne les cartes après un délai
+                }, 1000); // Donne 1 seconde pour voir les cartes
+            }
+
+            setTimeout(() => {
+                setCanClick(true); // Permet de cliquer à nouveau après la vérification
+            }, 1000);
+        }
+
+        onCardClick(); // Incrémente le compteur de clics
+    };
 
     return (
         <div className={Styles.gameBoard}>
-            {cards.map((card: CardType) => (
-                <Card key={card.id} card={card} onCardClick={onCardClick} />
+            {cards.map((card, index) => (
+                <Card key={card.id} card={card} onCardClick={() => handleCardClick(index)}
+                    isFlipped={selectedCards.includes(index) || foundPairs.includes(index)} />
             ))}
         </div>
     );

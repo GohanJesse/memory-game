@@ -7,17 +7,17 @@
   {
     "id": 2,
     "title": "Elsa anna kristof",
-    "imageUrl": "/images/frozen/Elsa anna kristof.png"
+    "imageUrl": "/images/frozen/Elsa_anna_kristof.png"
   },
   {
     "id": 3,
     "title": "Elsa anna Olaf",
-    "imageUrl": "/images/frozen/Elsa anna Olaf.png"
+    "imageUrl": "/images/frozen/Elsa_anna_Olaf.png"
   },
   {
     "id": 4,
     "title": "Elsa anna",
-    "imageUrl": "/images/frozen/Elsa anna.png"
+    "imageUrl": "/images/frozen/Elsa_anna.png"
   },
   {
     "id": 5,
@@ -32,7 +32,7 @@
   {
     "id": 7,
     "title": "Olaf Glace",
-    "imageUrl": "/images/frozen/Olaf Glace.png"
+    "imageUrl": "/images/frozen/Olaf_Glace.png"
   },
   {
     "id": 8,
@@ -42,10 +42,60 @@
   {
     "id": 9,
     "title": "Sven kristof",
-    "imageUrl": "/images/frozen/Sven kristof.png"
+    "imageUrl": "/images/frozen/Sven_kristof.png"
   },
   {
     "id": 10,
+    "title": "Sven",
+    "imageUrl": "/images/frozen/Sven.png"
+  },
+  {
+    "id": 11,
+    "title": "Anna",
+    "imageUrl": "/images/frozen/Anna.png"
+  },
+  {
+    "id": 12,
+    "title": "Elsa anna kristof",
+    "imageUrl": "/images/frozen/Elsa_anna_kristof.png"
+  },
+  {
+    "id": 13,
+    "title": "Elsa anna Olaf",
+    "imageUrl": "/images/frozen/Elsa_anna_Olaf.png"
+  },
+  {
+    "id": 14,
+    "title": "Elsa anna",
+    "imageUrl": "/images/frozen/Elsa_anna.png"
+  },
+  {
+    "id": 15,
+    "title": "Elsa",
+    "imageUrl": "/images/frozen/Elsa.png"
+  },
+  {
+    "id": 16,
+    "title": "kristof",
+    "imageUrl": "/images/frozen/kristof.png"
+  },
+  {
+    "id": 17,
+    "title": "Olaf Glace",
+    "imageUrl": "/images/frozen/Olaf_Glace.png"
+  },
+  {
+    "id": 18,
+    "title": "Olaf",
+    "imageUrl": "/images/frozen/Olaf.png"
+  },
+  {
+    "id": 19,
+    "title": "Sven kristof",
+    "imageUrl": "/images/frozen/Sven_kristof.png"
+  },
+  {
+    "id": 20,
     "title": "Sven",
     "imageUrl": "/images/frozen/Sven.png"
   }

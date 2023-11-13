@@ -2,36 +2,66 @@ import { useState } from 'react';
 import Styles from './App.module.css';
 import Sidebar from './view/Sidebar/Sidebar';
 import GameBoard from './view/GameBoard/GameBoard';
-import dragonBallData from './themes/dragonball.json';
+import dragonBallData from '../src/themes/dragonball.json';
+import frozenData from '../src/themes/frozen.json';
+import pokemonData from '../src/themes/pokemon.json';
 import { CardType } from './models/CardType';
 
-// Ajoute la fonction shuffleCards ici
 const shuffleCards = (cards: CardType[]): CardType[] => {
-  let currentIndex = cards.length, randomIndex;
+  // Crée des copies des objets pour garantir que React détecte les changements
+  const shuffledCards = cards.map(card => ({ ...card }));
+  let currentIndex = shuffledCards.length, randomIndex;
 
-  // Tant qu'il reste des éléments à mélanger...
+  // Mélange les cartes
   while (currentIndex !== 0) {
-    // Prendre un élément restant...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-
-    // Et l'échanger avec l'élément actuel.
-    [cards[currentIndex], cards[randomIndex]] = [
-      cards[randomIndex], cards[currentIndex]];
+    [shuffledCards[currentIndex], shuffledCards[randomIndex]] = [
+      shuffledCards[randomIndex], shuffledCards[currentIndex]];
   }
 
-  return cards;
+  return shuffledCards;
 };
 
 
 export default function App() {
   const [clickCount, setClickCount] = useState(0);
-  const [cards, setCards] = useState<CardType[]>([]);
+  const [pairsFound, setPairsFound] = useState(0);
+  const [currentTheme, setCurrentTheme] = useState('dragonball');
+  const [cards, setCards] = useState<CardType[]>(() => shuffleCards([...dragonBallData]));
 
   const restartGame = () => {
-    setClickCount(0); // Réinitialise le nombre de clics
+    setClickCount(0);
+    setPairsFound(0);
     // Tu peux ajouter d'autres états à réinitialiser ici
-    setCards(shuffleCards([...dragonBallData])); // Mélange à nouveau les cartes
+    switch (currentTheme) {
+      case 'frozen':
+        setCards(shuffleCards([...frozenData]));
+        break;
+      case 'pokemon':
+        setCards(shuffleCards([...pokemonData]));
+        break;
+      case 'dragonball':
+      default:
+        setCards(shuffleCards([...dragonBallData]));
+    }
+  };
+
+  const changeTheme = (newTheme: string) => {
+    setCurrentTheme(newTheme);
+    let newThemeData;
+    switch (newTheme) {
+      case 'frozen':
+        newThemeData = frozenData;
+        break;
+      case 'pokemon':
+        newThemeData = pokemonData;
+        break;
+      case 'dragonball':
+      default:
+        newThemeData = dragonBallData;
+    }
+    setCards(shuffleCards([...newThemeData]));
   };
 
   const incrementClickCount = () => {
@@ -41,12 +71,11 @@ export default function App() {
   return (
     <div className={Styles.app}>
       <div className={Styles.sidebarWrapper}>
-        <Sidebar clickCount={clickCount} onRestart={restartGame} />
+        <Sidebar clickCount={clickCount} pairsFound={pairsFound} onRestart={restartGame} onThemeChange={changeTheme} />
       </div>
       <div className={Styles.gameBoardWrapper}>
-        <GameBoard onCardClick={incrementClickCount} cards={cards} />
+        <GameBoard onCardClick={incrementClickCount} cards={cards} setPairsFound={setPairsFound} />
       </div>
     </div>
   );
 }
-
