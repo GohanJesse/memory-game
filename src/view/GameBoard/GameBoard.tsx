@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import Styles from './GameBoard.module.css';
 import { CardType } from '../../models/CardType';
@@ -7,14 +7,23 @@ interface GameBoardProps {
     onCardClick: () => void;
     setPairsFound: (pairs: number) => void;
     cards: CardType[];
+    gameRestarted: boolean;
 }
 
 
-const GameBoard: React.FC<GameBoardProps> = ({ onCardClick, setPairsFound, cards }) => {
+const GameBoard: React.FC<GameBoardProps> = ({ onCardClick, setPairsFound, cards, gameRestarted }) => {
 
     const [selectedCards, setSelectedCards] = useState<number[]>([]);
     const [foundPairs, setFoundPairs] = useState<number[]>([]);
     const [canClick, setCanClick] = useState(true);
+
+    useEffect(() => {
+        if (gameRestarted) {
+            setSelectedCards([]);
+            setFoundPairs([]);
+            setCanClick(true);
+        }
+    }, [gameRestarted]);
 
     const handleCardClick = (index: number) => {
         if (!canClick || foundPairs.includes(index) || selectedCards.includes(index)) {
@@ -52,7 +61,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ onCardClick, setPairsFound, cards
         <div className={Styles.gameBoard}>
             {cards.map((card, index) => (
                 <Card key={card.id} card={card} onCardClick={() => handleCardClick(index)}
-                    isFlipped={selectedCards.includes(index) || foundPairs.includes(index)} />
+                    isFlipped={!gameRestarted && (selectedCards.includes(index) || foundPairs.includes(index))} />
             ))}
         </div>
     );

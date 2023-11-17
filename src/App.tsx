@@ -6,6 +6,7 @@ import dragonBallData from '../src/themes/dragonball.json';
 import frozenData from '../src/themes/frozen.json';
 import pokemonData from '../src/themes/pokemon.json';
 import { CardType } from './models/CardType';
+import VictoryMessage from '../src/view/VictoryMessage/VictoryMessage';
 
 const shuffleCards = (cards: CardType[]): CardType[] => {
   // Crée des copies des objets pour garantir que React détecte les changements
@@ -29,10 +30,12 @@ export default function App() {
   const [pairsFound, setPairsFound] = useState(0);
   const [currentTheme, setCurrentTheme] = useState('dragonball');
   const [cards, setCards] = useState<CardType[]>(() => shuffleCards([...dragonBallData]));
+  const [gameRestarted, setGameRestarted] = useState(false);
 
   const restartGame = () => {
     setClickCount(0);
     setPairsFound(0);
+    setGameRestarted(true);
     // Tu peux ajouter d'autres états à réinitialiser ici
     switch (currentTheme) {
       case 'frozen':
@@ -45,6 +48,7 @@ export default function App() {
       default:
         setCards(shuffleCards([...dragonBallData]));
     }
+    setTimeout(() => setGameRestarted(false), 500);
   };
 
   const changeTheme = (newTheme: string) => {
@@ -62,6 +66,12 @@ export default function App() {
         newThemeData = dragonBallData;
     }
     setCards(shuffleCards([...newThemeData]));
+    setGameRestarted(true);
+    setTimeout(() => {
+      setGameRestarted(false);
+      // Ici vous pourriez potentiellement appeler une fonction de réinitialisation
+      // de GameBoard si cela ne fonctionne pas comme prévu
+    }, 500);
   };
 
   const incrementClickCount = () => {
@@ -74,8 +84,11 @@ export default function App() {
         <Sidebar clickCount={clickCount} pairsFound={pairsFound} onRestart={restartGame} onThemeChange={changeTheme} />
       </div>
       <div className={Styles.gameBoardWrapper}>
-        <GameBoard onCardClick={incrementClickCount} cards={cards} setPairsFound={setPairsFound} />
+        <GameBoard onCardClick={incrementClickCount} cards={cards} setPairsFound={setPairsFound} gameRestarted={gameRestarted} />
       </div>
+      {pairsFound === 10 && (
+        <VictoryMessage clickCount={clickCount} onRestart={restartGame} />
+      )}
     </div>
   );
 }
