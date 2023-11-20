@@ -1,3 +1,18 @@
+@font-face {
+  font-family: "DragonballFont";
+  src: url("/fonts/dragonballFont.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PokemonFont";
+  src: url("/fonts/pokemonFont.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "FrozenFont";
+  src: url("/fonts/frozenFont.ttf") format("truetype");
+}
+
 .background {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);
@@ -6,12 +21,50 @@
 }
 
 .victoryMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 100%;
   transform: translate(-50%, -50%);
   background: white;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+}
+
+.victoryMessage > h1 {
+  font-size: 40px;
+}
+
+.clickCount {
+  font-family: sans-serif;
+}
+
+.restartBtn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  width: 250px;
+  height: 60px;
+  background-color: grey;
+  color: white;
+  font-family: sans-serif;
+}
+
+.victoryMessageDragonball {
+  font-family: "DragonballFont", sans-serif;
+}
+
+.victoryMessagePokemon {
+  font-family: "PokemonFont", sans-serif;
+}
+
+.victoryMessageFrozen {
+  font-family: "FrozenFont", sans-serif;
 }

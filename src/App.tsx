@@ -36,7 +36,7 @@ export default function App() {
     setClickCount(0);
     setPairsFound(0);
     setGameRestarted(true);
-    // Tu peux ajouter d'autres états à réinitialiser ici
+
     switch (currentTheme) {
       case 'frozen':
         setCards(shuffleCards([...frozenData]));
@@ -68,9 +68,6 @@ export default function App() {
     setCards(shuffleCards([...newThemeData]));
     setGameRestarted(true);
     setTimeout(() => {
-      setGameRestarted(false);
-      // Ici vous pourriez potentiellement appeler une fonction de réinitialisation
-      // de GameBoard si cela ne fonctionne pas comme prévu
     }, 500);
   };
 
@@ -78,16 +75,44 @@ export default function App() {
     setClickCount(clickCount + 1);
   };
 
+  const getAppStyle = () => {
+    switch (currentTheme) {
+      case 'dragonball':
+        return Styles.appDragonball;
+      case 'pokemon':
+        return Styles.appPokemon;
+      case 'frozen':
+        return Styles.appFrozen;
+      default:
+        return ''; // ou une classe par défaut si nécessaire
+    }
+  };
+
   return (
-    <div className={Styles.app}>
+    <div className={`${Styles.app} ${getAppStyle()}`}>
       <div className={Styles.sidebarWrapper}>
-        <Sidebar clickCount={clickCount} pairsFound={pairsFound} onRestart={restartGame} onThemeChange={changeTheme} />
+        <Sidebar
+          clickCount={clickCount}
+          pairsFound={pairsFound}
+          onRestart={restartGame}
+          onThemeChange={changeTheme}
+        />
       </div>
       <div className={Styles.gameBoardWrapper}>
-        <GameBoard onCardClick={incrementClickCount} cards={cards} setPairsFound={setPairsFound} gameRestarted={gameRestarted} />
+        <GameBoard
+          onCardClick={incrementClickCount}
+          cards={cards}
+          setPairsFound={setPairsFound}
+          gameRestarted={gameRestarted}
+          currentTheme={currentTheme}
+        />
       </div>
       {pairsFound === 10 && (
-        <VictoryMessage clickCount={clickCount} onRestart={restartGame} />
+        <VictoryMessage
+          clickCount={clickCount}
+          onRestart={restartGame}
+          currentTheme={currentTheme}
+        />
       )}
     </div>
   );

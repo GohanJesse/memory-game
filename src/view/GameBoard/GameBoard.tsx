@@ -8,14 +8,17 @@ interface GameBoardProps {
     setPairsFound: (pairs: number) => void;
     cards: CardType[];
     gameRestarted: boolean;
+    currentTheme: string;
 }
 
 
-const GameBoard: React.FC<GameBoardProps> = ({ onCardClick, setPairsFound, cards, gameRestarted }) => {
+const GameBoard: React.FC<GameBoardProps> = ({ onCardClick, setPairsFound, cards, gameRestarted, currentTheme }) => {
 
     const [selectedCards, setSelectedCards] = useState<number[]>([]);
     const [foundPairs, setFoundPairs] = useState<number[]>([]);
     const [canClick, setCanClick] = useState(true);
+
+
 
     useEffect(() => {
         if (gameRestarted) {
@@ -57,11 +60,29 @@ const GameBoard: React.FC<GameBoardProps> = ({ onCardClick, setPairsFound, cards
         onCardClick(); // Incrémente le compteur de clics
     };
 
+    const getGameBoardStyle = () => {
+        switch (currentTheme) {
+            case 'dragonball':
+                return Styles.gameBoardDragonball;
+            case 'pokemon':
+                return Styles.gameBoardPokemon;
+            case 'frozen':
+                return Styles.gameBoardFrozen;
+            default:
+                return ''; // Ou une classe par défaut
+        }
+    };
+
     return (
-        <div className={Styles.gameBoard}>
+        <div className={`${Styles.gameBoard} ${getGameBoardStyle()}`}>
             {cards.map((card, index) => (
-                <Card key={card.id} card={card} onCardClick={() => handleCardClick(index)}
-                    isFlipped={!gameRestarted && (selectedCards.includes(index) || foundPairs.includes(index))} />
+                <Card
+                    key={card.id}
+                    card={card}
+                    onCardClick={() => handleCardClick(index)}
+                    isFlipped={!gameRestarted && (selectedCards.includes(index) || foundPairs.includes(index))}
+                    theme={currentTheme}
+                />
             ))}
         </div>
     );

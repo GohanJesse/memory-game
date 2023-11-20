@@ -5,9 +5,13 @@
   padding: 30px;
   align-content: start;
   overflow-y: auto;
-  /* border: 2px solid black; */
   border-radius: 25px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-top: 2px solid #ffffff75;
+  border-left: 2px solid #ffffff75;
+  box-shadow: 5px 5px 12px #00000035;
+  background: #ffffff25;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
   height: 80vh;
 }
 

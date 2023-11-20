@@ -8,16 +8,36 @@
   border: 2px solid black;
 }
 
-.sidebarWrapper {
-  width: 30%;
+.sidebarWrapper,
+.gameBoardWrapper {
   padding: 30px;
   box-sizing: border-box;
-  /* border: 1px solid red; */
+}
+
+.sidebarWrapper {
+  width: 20%;
 }
 
 .gameBoardWrapper {
-  width: 70%;
-  padding: 30px;
-  box-sizing: border-box;
-  /* border: 1px solid blue; */
+  width: 80%;
+}
+
+.appDragonball,
+.appPokemon,
+.appFrozen {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.appDragonball {
+  background-image: url("/images/dragonballzBackground.jpg");
+}
+
+.appPokemon {
+  background-image: url("/images/pokemonBackground.jpg");
+}
+
+.appFrozen {
+  background-image: url("/images/frozenBackground.jpeg");
 }
