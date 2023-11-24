@@ -12,6 +12,7 @@ const Sidebar: React.FC<SidebarProps> = ({ clickCount, pairsFound, onRestart, on
     return (
         <div className={Styles.sidebar}>
             <div className={Styles.gameThem}>
+                <span>Thème</span>
                 <div className={Styles.logoThem}>
                     <div
                         className={Styles.frozenThem}
@@ -28,13 +29,15 @@ const Sidebar: React.FC<SidebarProps> = ({ clickCount, pairsFound, onRestart, on
                 </div>
             </div>
             <div className={Styles.obtainedPairs}>
-                Score : {pairsFound} / 10
+                <span>Score</span>
+                <span>{pairsFound}/10</span>
             </div>
             <div className={Styles.clicksNumber}>
-                Clics : {clickCount}
+                <span>Clics</span>
+                <span>{clickCount}</span>
             </div>
             <div className={Styles.restartGame} onClick={onRestart}>
-                RESTART
+                <img className={Styles.restartImg} src="/images/rejouer.png" alt="image recommencer" />
             </div>
         </div >
     )

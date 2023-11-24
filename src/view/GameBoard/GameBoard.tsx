@@ -69,7 +69,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ onCardClick, setPairsFound, cards
             case 'frozen':
                 return Styles.gameBoardFrozen;
             default:
-                return ''; // Ou une classe par défaut
+                return '';
         }
     };
 

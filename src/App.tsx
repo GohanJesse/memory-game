@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import Styles from './App.module.css';
+import { CardType } from './models/CardType';
 import Sidebar from './view/Sidebar/Sidebar';
 import GameBoard from './view/GameBoard/GameBoard';
+import VictoryMessage from '../src/view/VictoryMessage/VictoryMessage';
+import OrientationWarning from '../src/view/OrientationWarning/OrientationWarning';
 import dragonBallData from '../src/themes/dragonball.json';
 import frozenData from '../src/themes/frozen.json';
 import pokemonData from '../src/themes/pokemon.json';
-import { CardType } from './models/CardType';
-import VictoryMessage from '../src/view/VictoryMessage/VictoryMessage';
+import Styles from './App.module.css';
 
 const shuffleCards = (cards: CardType[]): CardType[] => {
   // Crée des copies des objets pour garantir que React détecte les changements
@@ -67,8 +68,12 @@ export default function App() {
     }
     setCards(shuffleCards([...newThemeData]));
     setGameRestarted(true);
+    setTimeout(() => setGameRestarted(false), 0);
     setTimeout(() => {
     }, 500);
+    setClickCount(0);
+    setPairsFound(0);
+
   };
 
   const incrementClickCount = () => {
@@ -90,6 +95,7 @@ export default function App() {
 
   return (
     <div className={`${Styles.app} ${getAppStyle()}`}>
+      <OrientationWarning />
       <div className={Styles.sidebarWrapper}>
         <Sidebar
           clickCount={clickCount}

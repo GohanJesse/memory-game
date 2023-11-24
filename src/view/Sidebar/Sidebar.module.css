@@ -15,6 +15,12 @@
   color: white;
 }
 
+span {
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 3vh;
+}
+
 .gameThem,
 .obtainedPairs,
 .clicksNumber,
@@ -24,6 +30,7 @@
   justify-content: center;
   align-items: center;
   width: 90%;
+  gap: 5px;
 }
 
 .logoThem {
@@ -36,9 +43,7 @@
 .dragonballThem,
 .frozenThem,
 .pokemonThem {
-  height: 30px;
-  width: 30px;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -47,10 +52,15 @@
 .restartGame {
   cursor: pointer;
   font-family: sans-serif;
-  height: 100px;
-  width: 100px;
+  height: 15vh;
+  width: 7vw;
   border-radius: 50%;
   background-color: green;
+}
+
+.restartImg {
+  height: 100px;
+  width: 100%;
 }
 
 .dragonballThem {
@@ -63,4 +73,58 @@
 
 .pokemonThem {
   background-image: url("/images/pokeball.png");
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  /* Styles pour petits écrans */
+  .logoThem {
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 7px;
+  }
+  .obtainedPairs,
+  .clicksNumber {
+    font-size: 10px;
+  }
+  .restartGame {
+    height: 50px;
+    width: 50px;
+  }
+  .dragonballThem,
+  .frozenThem,
+  .pokemonThem {
+    width: 20px;
+    height: 20px;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Styles pour écrans moyens */
+  .dragonballThem,
+  .frozenThem,
+  .pokemonThem {
+    width: 20px;
+    height: 20px;
+  }
+}
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+  /* Styles pour grands écrans */
+  .dragonballThem,
+  .frozenThem,
+  .pokemonThem {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  /* Styles pour très grands écrans */
+  .dragonballThem,
+  .frozenThem,
+  .pokemonThem {
+    width: 40px;
+    height: 40px;
+  }
+  .restartImg {
+    height: 130px;
+    width: 100%;
+  }
 }
